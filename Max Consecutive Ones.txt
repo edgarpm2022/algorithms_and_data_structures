@@ -1,0 +1,33 @@
+Given a binary array nums, return the maximum number of consecutive 1's in the array.
+
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        List<Integer> consecutive = new ArrayList();
+        int max = 0;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                count++;
+                
+                if (i == nums.length - 1 && count != 0) {
+                    consecutive.add(count);
+                }
+            } else if (nums[i] == 0) {
+                if (count != 0) {
+                   consecutive.add(count); 
+                }
+                
+                count = 0;
+            }
+        }
+        
+        for (Integer findMax : consecutive) {
+            if (findMax.intValue() > max) {
+                max = findMax;
+            }
+        }
+        
+        return max;
+        
+    }
+}
